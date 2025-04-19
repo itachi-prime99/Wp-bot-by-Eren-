@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WhatsApp Session Generator</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 20px; }
+    #qr { margin: 20px 0; }
+    #sessionBox { display: none; margin-top: 20px; white-space: pre-wrap; background: #eee; padding: 10px; border-radius: 5px; }
+    button { padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>WhatsApp Session Generator</h1>
+  <button onclick="start()">Start Bot & Show QR</button>
+  <div id="qr"></div>
+  <div id="sessionBox"></div>
+
+  <script>
+    async function start() {
+      await fetch('/qr');
+      loadQR();
+    }
+
+    async function loadQR() {
+      const qrDiv = document.getElementById('qr');
+      qrDiv.innerHTML = 'Loading QR...';
+      const res = await fetch('/qr-code');
+      const data = await res.json();
+      if (data.qr) {
+        qrDiv.innerHTML = `<img src="${data.qr}" /><p>Scan with WhatsApp</p>`;
+        pollSession();
+      } else {
+        setTimeout(loadQR, 1000);
+      }
+    }
+
+    async function pollSession() {
+      try {
+        const res = await fetch('/session');
+        if (res.ok) {
+          document.getElementById('sessionBox').style.display = 'block';
+          document.getElementById('sessionBox').innerText = 'Session file is ready! Download from /session';
+          document.getElementById('qr').innerHTML = '<b>✅ Session generated!</b>';
+        } else {
+          setTimeout(pollSession, 2000);
+        }
+      } catch {
+        setTimeout(pollSession, 2000);
+      }
+    }
+  </script>
+</body>
+</html>
