@@ -1,8 +1,6 @@
 {
   "name": "whatsapp-session-web",
   "version": "1.0.0",
-  "description": "Generate WhatsApp session.json using Baileys (with QR web UI)",
-  "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
