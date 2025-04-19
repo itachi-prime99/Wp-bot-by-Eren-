@@ -1,63 +1,40 @@
-OWNER_NUMBER=+8801839268235
-```
+# WhatsApp Session Generator (Web QR + Session Download)
 
-4. Start the Bot
+এই প্রজেক্টটি দিয়ে তুমি খুব সহজে WhatsApp QR স্ক্যান করে session.json ফাইল জেনারেট করতে পারবে এবং সেটা অন্য বটে ব্যবহার করতে পারবে।
 
-```
-node index.js
-```
+## ✅ Features
 
-This command will start the bot. On the first run, a QR code will be generated, which you can scan using your mobile WhatsApp app.
-
-5. Pair Code Authentication
-
-After the first run, a *pairing code* will be generated. Input this code into your mobile app to authenticate the session and use the bot.
-
-Commands
-
-- *Hello*: Responds with `Hi! How can I help you today?`
-- *ping*: Responds with `pong`
-
-Contribution
-
-If you would like to contribute to this project, follow these steps:
-
-1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/EREN_WhatsApp_Bot.git
-   ```
-
-2. Create a new branch:
-   ```
-   git checkout -b your-feature-name
-   ```
-
-3. Write your code and add your changes:
-   ```
-   git add .
-   git commit -m "Add your commit message"
-   ```
-
-4. Push your branch:
-   ```
-   git push origin your-feature-name
-   ```
-
-5. Create a pull request.
-
-License
-
-MIT License - This project is licensed under the MIT License.
-```
+- Web Interface দিয়ে QR স্ক্যান
+- Session ফাইল (`session.json`) ডাউনলোড করার সুবিধা
+- Render বা যেকোনো Node.js হোস্টে রান করানো যাবে
+- Baileys library ব্যবহার করা হয়েছে
 
 ---
 
+## 🚀 Deploy Guide (Render)
 
+1. **GitHub এ আপলোড করো** এই প্রজেক্টের সব ফাইল
+2. **Render.com** এ গিয়ে "New Web Service" নির্বাচন করো
+3. নিচের সেটিং ব্যবহার করো:
 
-1. *Project Overview*: 
-   - A brief description of the bot’s functionality and features.
-   
-2. *Technologies*:
-   - Technologies and libraries used in the project.
+   - Build Command: `npm install`
+   - Start Command: `npm start`
+   - Root Directory: *ফাঁকা রাখো*
+   - Node Version: `18+` (default usually fine)
 
-3. *Setup Guide*:
+4. ডিপ্লয় হলে তোমার ওয়েবসাইট হবে:  
+   `https://your-app-name.onrender.com`
+
+---
+
+## 🔄 কিভাবে কাজ করে?
+
+1. ব্রাউজারে গিয়ে “Start Bot & Show QR” ক্লিক করো
+2. তোমার WhatsApp দিয়ে QR স্ক্যান করো
+3. স্ক্যান শেষ হলে session ফাইল অটো তৈরি হবে
+4. `/session` লিংকে গিয়ে session.json ডাউনলোড করো
+5. ওই session অন্য বটে পেস্ট করলেই QR ছাড়াই বট চালু!
+
+---
+
+## 📁 Folder Structure
